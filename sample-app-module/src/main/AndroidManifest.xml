@@ -1,0 +1,65 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kontakt.sample">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="kontakt.io.API_KEY"
+            android:value="YOURS-API-KEY" />
+
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <uses-permission android:name="android.permission.INTERNET"/>
+        <activity android:name=".ui.activity.monitor.IBeaconMonitorActivity" />
+        <activity android:name=".ui.activity.range.IBeaconRangeActivity" />
+        <activity android:name=".ui.activity.management.BeaconManagementActivity" />
+        <activity android:name=".ui.activity.BackgroundScanActivity" />
+        <activity android:name=".ui.activity.ProfilesActivity" />
+        <activity android:name=".ui.activity.management.ConfigFormActivity" />
+        <activity android:name=".ui.activity.SimultaneousScanActivity" />
+        <activity android:name=".ui.activity.range.BeaconRangeSyncableActivity" />
+        <activity android:name=".ui.activity.management.SyncableBeaconManagementActivity" />
+        <activity android:name=".ui.activity.range.EddystoneBeaconRangeActivity" />
+        <activity android:name=".ui.activity.management.EddystoneManagementActivity" />
+        <activity android:name=".ui.activity.monitor.EddystoneMonitorActivity" />
+        <activity android:name=".ui.activity.monitor.AllBeaconsMonitorActivity"/>
+
+        <service
+            android:name=".service.BackgroundScanService"
+            android:exported="false" />
+
+        <service
+            android:name=".service.SyncService"
+            android:exported="false" />
+
+        <service
+            android:name="com.kontakt.sdk.android.ble.service.ProximityService"
+            android:exported="false" />
+
+        <receiver
+            android:name=".receiver.BackgroundScanReceiver"
+            android:exported="false">
+            <intent-filter android:priority="1">
+                <action android:name="com.kontakt.sample.service.BackgroundScanService.BROADCAST" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
